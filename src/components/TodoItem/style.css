@@ -1,0 +1,85 @@
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px 20px;
+    border: 1px solid #5a5959;
+    width: 48.5%;
+    margin-bottom: 3%;
+}
+
+.todo-info-con {
+    display: flex;
+    align-items: center;
+}
+
+.todo-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 15px;
+}
+  
+.todo-name {
+    font-size: 16px;
+    font-family: 'Montserrat';
+    color: #1f244f;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.delete-priority-con {
+    display: flex;
+    align-items: center;
+}
+
+.vertical-line {
+    width: 1px;
+    background-color: #b2afaf;
+    height: 23px;
+    margin-right: 10px;
+}
+
+.priority-icon {
+    color: #6d6c6c;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.priority-icon-low {
+    transform: rotate(180deg);
+}
+
+.priority-icon-medium {
+    transform: rotate(90deg);
+}
+
+.delete-todo-button {
+    background-color: #181717;
+    padding: 0px;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+}
+
+.delete-icon {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.todo-complete {
+    color: #00b600;
+}
+
+@media screen and (max-width: 768px) {
+    .todo-item {
+        width: 100%;
+    }
+}

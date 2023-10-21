@@ -1,0 +1,175 @@
+.todo-app-container {
+    min-height: 95vh;
+    width: 100%;
+    padding: 50px 10%;
+}
+
+.todo-add-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #bebebe;
+    border-radius: 8px;
+    height: 40px;
+    padding: 0px 10px;
+    width: 50%;
+    max-width: 430px;
+    margin-right: 20px;
+}
+
+.todo-icon {
+    color: gray;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.input-box {
+    height: 75%;
+    width: 100%;
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #000;
+}
+
+.button-priority-con {
+    display: flex;
+    align-items: center;
+}
+
+.priority-label {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #000;
+    font-weight: 800;
+    margin-right: 10px;
+}
+
+.priority-container {
+    background-color: transparent;
+    border: 1px solid #bebebe;
+    border-radius: 8px;
+    height: 40px;
+    outline: none;
+    padding-left: 7px;
+    width: 70px;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #000;
+    margin-right: 20px;
+}
+
+.add-todo-button {
+    border: 0px;
+    height: 40px;
+    padding: 0px 15px;
+    border-radius: 8px;
+    background-color: #181717;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.tasks-sort-con {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    align-items: center;
+}
+
+.tasks-heading {
+    font-family: 'Montserrat';
+    font-size: 24px;
+    font-weight: 900;
+    color: #1f244f;
+    margin: 0px;
+}
+
+.sort-con {
+    display: flex;
+    align-items: center;
+}
+
+.sort-heading {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 900;
+    color: #1f244f;
+    margin-left: 20px;
+}
+
+.sort-sub-con {
+    display: flex;
+    align-items: center;
+}
+
+.sort-container {
+    height: 23px;
+    padding-left: 6px;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    color: #1f244f;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #181717;
+    margin-left: 10px;
+}
+
+.line {
+    height: 2px;
+    background-color: #cfbdbd;
+    margin-top: 10px;
+}
+
+.todo-list {
+    display: flex;
+    padding-left: 0px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style-type: none;
+    margin-top: 30px;
+}
+
+/* ------------------------------ */
+@media screen and (max-width: 768px) {
+    .todo-app-container {
+        padding: 30px 7%;
+    }
+    .todo-add-container {
+        flex-direction: column;
+    }
+    .button-priority-con {
+        margin-top: 10px;
+    }
+    .input-container {
+        width: 100%;
+        margin-right: 0px;
+    }
+    .tasks-sort-con {
+        /* flex-direction: column; */
+        margin-top: 40px;
+    }
+    .tasks-heading {
+        align-self: flex-start;
+        margin-bottom: 15px;
+    }
+    .sort-sub-con {
+        flex-direction: column;
+    }
+    .sort-heading {
+        margin-left: 10px;
+        align-self: flex-start;
+        margin-bottom: 4px;
+    }
+}
