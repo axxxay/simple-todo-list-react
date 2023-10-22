@@ -45,14 +45,19 @@
     color: #6d6c6c;
     font-size: 18px;
     margin-right: 10px;
+    color: #4c4cc0;
+
 }
 
 .priority-icon-low {
     transform: rotate(180deg);
+    color: #eb5656;
 }
 
 .priority-icon-medium {
     transform: rotate(90deg);
+    color: #da9423;
+
 }
 
 .delete-todo-button {
@@ -78,8 +83,82 @@
     color: #00b600;
 }
 
+.edit-icon {
+    color: #6d6c6c;
+    font-size: 19px;
+}
+
+.trigger-button {
+    padding: 0px;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+    margin-right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.popup-overlay {
+    background-color: #00000050;
+}
+
+.popup-content {
+    width: 50%;
+    max-width: 500px;
+}
+
+.edit-con {
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-heading {
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-weight: 900;
+    color: #1f244f;
+    margin-bottom: 12px;
+}
+
+.edit-input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #b2afaf;
+    border-radius: 8px;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.modal-trigger-button {
+    background-color: #181717;
+    padding: 7px 15px;
+    outline: none;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    align-self: flex-end;
+}
+
+
 @media screen and (max-width: 768px) {
     .todo-item {
         width: 100%;
+    }
+    .popup-content {
+        width: 90%;
     }
 }

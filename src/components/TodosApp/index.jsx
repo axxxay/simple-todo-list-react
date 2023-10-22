@@ -11,6 +11,8 @@ const TodoApp = () => {
     const [todo, setTodo] = useState("")
     const [priority, setPriority] = useState("High")
     const [filteredTodoList, setFilteredTodoList] = useState([])
+    const [sortBy, setSortBy] = useState("All")
+    const [sortByPriority, setSortByPriority] = useState("")
 
     const onChangeInput = (event) => {
         setTodo(event.target.value)
@@ -30,7 +32,18 @@ const TodoApp = () => {
             }
             setTodoList([...todoList, newTodo])
             setTodo("");
+            setPriority("High");
         }
+    }
+
+    const updateTodoItem = (id, todo) => {
+        const updatedTodoList = todoList.map(eachItem => {
+            if(eachItem.id === id){
+                eachItem.todo = todo
+            }
+            return eachItem
+        })
+        setTodoList(updatedTodoList);
     }
 
     const deleteTodoItem = (id) => {
@@ -52,34 +65,46 @@ const TodoApp = () => {
     useEffect(() => {
         setFilteredTodoList(todoList)
     }, [todoList])
-    
-    let filteredTodo = []
-    const sortByCompletion = (event) => {
-        if (event.target.value === "Completed") {
-            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === true)
-            setFilteredTodoList(filteredTodo)
-        } else if (event.target.value === "Incomplete") {
-            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === false)
-            setFilteredTodoList(filteredTodo)
-        } else if (event.target.value === "All") {
-            filteredTodo = todoList
-            setFilteredTodoList(filteredTodo)
-        }
+
+    const onChangeSortByPriority = (event) => {
+        setSortByPriority(event.target.value)
+        sortByCompletionAndPriority(sortBy, event.target.value)
     }
 
-    const sortByPriority = (event) => {
-        if (event.target.value === "High") {
+    const onChangeSortBy = (event) => {
+        setSortBy(event.target.value)
+        sortByCompletionAndPriority(event.target.value, sortByPriority)
+
+    }
+
+    let filteredTodo = []
+    const sortByCompletionAndPriority = (sortBy, sortByPriority ) => {
+        if (sortBy === "All" && sortByPriority === "") {
+            filteredTodo = todoList
+        }else if (sortBy === "All" && sortByPriority === "High") {
             filteredTodo = todoList.filter(eachItem => eachItem.priority === 'High')
-            setFilteredTodoList(filteredTodo)
-        } else if (event.target.value === "Medium") {
+        } else if (sortBy === "All" && sortByPriority === "Medium") {
             filteredTodo = todoList.filter(eachItem => eachItem.priority === 'Medium')
-            setFilteredTodoList(filteredTodo)
-        } else if (event.target.value === "Low") {
+        } else if (sortBy === "All" && sortByPriority === "Low") {
             filteredTodo = todoList.filter(eachItem => eachItem.priority === 'Low')
-            setFilteredTodoList(filteredTodo)
-        } else {
-            setFilteredTodoList(todoList)
+        } if (sortBy === "Completed" && sortByPriority === "") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === true)
+        } else if (sortBy === "Completed" && sortByPriority === "High") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === true && eachItem.priority === 'High')
+        } else if (sortBy === "Completed" && sortByPriority === "Medium") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === true && eachItem.priority === 'Medium')
+        } else if (sortBy === "Completed" && sortByPriority === "Low") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === true && eachItem.priority === 'Low')
+        } else if (sortBy === "Incomplete" && sortByPriority === "") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === false)
+        } else if (sortBy === "Incomplete" && sortByPriority === "High") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === false && eachItem.priority === 'High')
+        } else if (sortBy === "Incomplete" && sortByPriority === "Medium") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === false && eachItem.priority === 'Medium')
+        } else if (sortBy === "Incomplete" && sortByPriority === "Low") {
+            filteredTodo = todoList.filter(eachItem => eachItem.isComplete === false && eachItem.priority === 'Low')
         }
+        setFilteredTodoList(filteredTodo)
     }
 
     return (
@@ -106,7 +131,7 @@ const TodoApp = () => {
                     <div className='sort-con'>
                         <div className='sort-sub-con'>
                             <p className='sort-heading'>Filter by</p>
-                            <select className='sort-container' onChange={sortByCompletion}>
+                            <select className='sort-container' onChange={onChangeSortBy}>
                                 <option className='sort' value="All">All</option>
                                 <option className='sort' value="Completed">Completed</option>
                                 <option className='sort' value="Incomplete">Incomplete</option>
@@ -114,7 +139,7 @@ const TodoApp = () => {
                         </div>
                         <div className='sort-sub-con'>
                         <p className='sort-heading'>Sort priority</p>
-                            <select className='sort-container' onChange={sortByPriority}>
+                            <select className='sort-container' onChange={onChangeSortByPriority}>
                                 <option className='sort' value="">Select</option>
                                 <option className='sort' value="High">High</option>
                                 <option className='sort' value="Medium">Medium</option>
@@ -125,7 +150,13 @@ const TodoApp = () => {
                 </div>
                 <hr className='line'/>
                 <ul className='todo-list'>
-                    {filteredTodoList.map(eachItem => <TodoItem key={eachItem.id} deleteTodoItem={deleteTodoItem} toggleCompletion={toggleCompletion} todoDetails={eachItem} />)}
+                    {
+                        todoList.length === 0 && <div className='task-image-con'>
+                            <img src='/task-image.jpg' className='task-image' alt='todo' />
+                            <h1 className='task-text'>Your Tasks goes here...</h1>
+                        </div>
+                    }
+                    {filteredTodoList.map(eachItem => <TodoItem key={eachItem.id} updateTodoItem={updateTodoItem} deleteTodoItem={deleteTodoItem} toggleCompletion={toggleCompletion} todoDetails={eachItem} />)}
                 </ul>
                 
             </div>
